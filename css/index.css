@@ -1,0 +1,70 @@
+body{
+    display: grid;
+    grid-template-columns: 100%;
+    background-color: slategray;
+    font-family: Calibri,sans-serif;
+    font-size: x-large;
+}
+
+.logo{
+    max-width: 100%;
+}
+
+header{
+    display: grid;
+    background-color: #1a1a1a;
+    justify-content: center;
+}
+
+.info{
+    font-size: medium;
+    color: white;
+}
+
+main{
+    width: 100%;
+    display: grid;
+    grid-template-rows: auto auto 4em;
+}
+
+.choice_frame{
+    width: 100%;
+    background-color: orangered;
+}
+
+.choice_frame label{
+    color: white;
+    width: 100%;
+}
+
+.choice_frame select{
+    font-size: large;
+    width: 100%;
+}
+
+.createQuiz{
+    display: flex;
+    background-color: #1a1a1a;
+    color: white;
+    justify-content: center;
+    align-items: center;
+}
+
+footer{
+    display: grid;
+    grid-template-columns: 1em 1em auto;
+    justify-content: flex-start;
+}
+
+.author{
+    grid-column: 1/ span 3;
+    font-size: medium;
+}
+
+.social_icon{
+    max-width: 1em;
+}
+
+.trivia_icon{
+    max-width: 2em;
+}
