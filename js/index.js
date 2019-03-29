@@ -41,51 +41,6 @@ loadQuizElement = function(quiz, elementID){
     })
 };
 
-buildQuizProgressBars = function(progressGrid){
-
-    return new Promise((resolve) => {
-        resolve();
-        for(let i = 0; i < numberOfPlayers.value; i++){
-
-            let playerDiv = document.createElement("div");
-            playerDiv.setAttribute("class", "player");
-            playerDiv.setAttribute("id","player" + i);
-            playerDiv.innerHTML = "P"+(i+1);
-
-            let progressDiv = document.createElement("div");
-            progressDiv.setAttribute("class", "progressBar");
-            progressDiv.setAttribute("id", "progressBar" + i);
-
-            for(let j = 0; j<10; j++){
-
-                let progressSegment = document.createElement("div");
-                progressSegment.setAttribute("class", "progSegment");
-                progressSegment.setAttribute("id", "progSegment" + i + j);
-                progressDiv.appendChild(progressSegment);
-
-            }
-
-            let correctAnswers = document.createElement("div");
-            correctAnswers.setAttribute("class", "progressNumber");
-            correctAnswers.setAttribute("id", "progressNumber" + i);
-            correctAnswers.innerHTML = "0/10";
-
-            progressGrid.appendChild(playerDiv);
-            progressGrid.appendChild(progressDiv);
-            progressGrid.appendChild(correctAnswers);
-
-        }
-
-
-        console.log("progressGrid Successfully built");
-
-
-
-    })
-
-
-};
-
 getQuizData = function(){
 
     return new Promise((resolve) => {
@@ -118,16 +73,10 @@ function openNewQuiz(){
 
         loadQuizElement(NewQuizTab, "progressGrid").then(function(ProgressGrid){
 
-            buildQuizProgressBars(ProgressGrid).then(function () {
-
-                getQuizData().then(function (QuizData) {
-                    localStorage.setItem("quizData", QuizData);
-                    localStorage.setItem("numberOfPlayers", numberOfPlayers.value);
-                    localStorage.setItem("QuizLoaded", "true");
-
-                }, function (ErrorMessage) {
-                    console.log(ErrorMessage);
-                });
+            getQuizData().then(function (QuizData) {
+                localStorage.setItem("quizData", QuizData);
+                localStorage.setItem("numberOfPlayers", numberOfPlayers.value);
+                localStorage.setItem("QuizLoaded", "true");
 
             });
 

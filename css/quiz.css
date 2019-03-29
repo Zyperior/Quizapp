@@ -7,6 +7,7 @@ body,
 .loaderGrid,
 .bodyGrid,
 .progressGrid,
+.progressLine,
 .answerGrid,
 .question,
 .answer{
@@ -57,14 +58,18 @@ body{
 .progressGrid{
     min-width:360px;
     border-radius: 1em;
-    grid-template-columns: 10% auto 17%;
     background-color: #1a1a1a;
+
+}
+
+.progressLine{
+    grid-template-columns: auto auto auto;
     justify-content: space-evenly;
     align-items: center;
 }
 
 .player{
-    margin-left: 1em;
+    margin-right: 1em;
     text-align: center;
     border-radius: 0.5em;
     max-width: 1.25em;

@@ -28,6 +28,13 @@ function runQuiz(){
         players.push("0");
     }
 
+    for(let i=0; i<4; i++){
+        let progressLine = document.getElementById("progressLine" + i);
+        if(i>=numberOfPlayers){
+            progressLine.className = "invisible"
+        }
+    }
+
     setTurn();
 
 }
