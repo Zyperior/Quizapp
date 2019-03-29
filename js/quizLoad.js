@@ -9,6 +9,7 @@ window.onload = function () {
 
     function loading(){
         let isLoaded = localStorage.getItem("QuizLoaded");
+        isLoaded = "true";
         let box = document.getElementById("loadBox" + boxID);
 
         if(isLoaded==="true"){

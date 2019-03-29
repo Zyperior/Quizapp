@@ -44,7 +44,7 @@ loadQuizElement = function(quiz, elementID){
 buildQuizProgressBars = function(progressGrid){
 
     return new Promise((resolve) => {
-
+        resolve();
         for(let i = 0; i < numberOfPlayers.value; i++){
 
             let playerDiv = document.createElement("div");
@@ -78,7 +78,7 @@ buildQuizProgressBars = function(progressGrid){
 
 
         console.log("progressGrid Successfully built");
-        resolve();
+
 
 
     })

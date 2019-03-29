@@ -60,7 +60,7 @@ body{
     grid-template-columns: 10% auto 17%;
     background-color: #1a1a1a;
     justify-content: space-evenly;
-    align-items: baseline;
+    align-items: center;
 }
 
 .player{
