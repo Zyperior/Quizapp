@@ -44,13 +44,14 @@ body{
 }
 
 .loaderFlex{
-    width: 100%;
+    width: 97em;
     justify-content: center;
 }
 
 .loadBox{
     height: 1em;
     width: 1em;
+    margin: 1em;
     background-color: white;
 }
 
@@ -63,7 +64,7 @@ body{
 }
 
 .progressGrid{
-    min-width:360px;
+    min-width: 97vw;
     border-radius: 1em;
     background-color: #1a1a1a;
 
