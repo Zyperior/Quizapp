@@ -22,7 +22,7 @@ finalAnswerButton.addEventListener("click", () => {
 
 function initializeQuiz(){
 
-    numberOfPlayers = localStorage.getItem("numberOfPlayers");
+    numberOfPlayers = parseInt(localStorage.getItem("numberOfPlayers"));
     quizDataJSON = JSON.parse(localStorage.getItem("quizData"));
 
     createAnswerJSON();
@@ -63,7 +63,7 @@ function setTurn(){
     }
     else{
 
-        if(playerNr.toString()===numberOfPlayers){
+        if(playerNr===numberOfPlayers){
             playerNr--;
 
             controlAnswers(questionNr);
