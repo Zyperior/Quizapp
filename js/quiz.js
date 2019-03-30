@@ -25,6 +25,21 @@ function initializeQuiz(){
     numberOfPlayers = localStorage.getItem("numberOfPlayers");
     quizDataJSON = JSON.parse(localStorage.getItem("quizData"));
 
+    createAnswerJSON();
+
+    for(let i=0; i<4; i++){
+        let progressLine = document.getElementById("progressLine" + i);
+        if(i>=numberOfPlayers){
+            progressLine.className = "invisible"
+        }
+    }
+
+    setTurn();
+
+}
+
+function createAnswerJSON(){
+
     let playersString = "{\"answers\":[";
     for(let i = 0; i<numberOfPlayers; i++){
         if(i===numberOfPlayers-1){
@@ -38,62 +53,67 @@ function initializeQuiz(){
     playersString = playersString + "]}";
 
     players = JSON.parse(playersString);
-
-    for(let i=0; i<4; i++){
-        let progressLine = document.getElementById("progressLine" + i);
-        if(i>=numberOfPlayers){
-            progressLine.className = "invisible"
-        }
-    }
-
-    setTurn();
-
 }
+
 
 function setTurn(){
-
-    if(playerNr===numberOfPlayers){
-        questionNr++;
-        playerNr=0;
-    }
-
-    let playerIndicators = Array.from(progressGrid.getElementsByClassName("player"));
-    playerIndicators.forEach(function(indicator){
-        if(indicator.value==="active"){
-            indicator.className = "player"
-        }
-    });
-
-    let playerIndicator = document.getElementById("player" + playerNr);
-    playerIndicator.className = "player active";
-    playerIndicator.value = "active";
-
-    nextQuestion();
-
-}
-
-function nextQuestion(){
 
     if(questionNr>10){
         endQuiz();
     }
     else{
+
+        if(playerNr.toString()===numberOfPlayers){
+            playerNr--;
+
+            controlAnswers(questionNr);
+            questionNr++;
+            playerNr=0;
+        }
+
+        let playerIndicators = Array.from(progressGrid.getElementsByClassName("player"));
+        playerIndicators.forEach(function(indicator){
+            if(indicator.value==="active"){
+                indicator.className = "player"
+            }
+        });
+
+        let playerIndicator = document.getElementById("player" + playerNr);
+        playerIndicator.className = "player active";
+        playerIndicator.value = "active";
+
         setUpQuestion();
+    }
+
+
+
+}
+
+function controlAnswers(questionNr){
+
+    for(let i = 0; i < numberOfPlayers; i++){
+
+        let progSegment = document.getElementById("progSegment"+i+questionNr);
+
+        if(players.answers[i][questionNr].toLowerCase()===correctAnswer.toLowerCase()){
+            progSegment.className = "progSegment correct";
+        }
+        else{
+            progSegment.className = "progSegment wrong";
+
+        }
     }
 
 }
 
-function lockAnswer(){
-    playerNr++;
-    setTurn();
-}
 
 async function setUpQuestion(){
-
-    questionType = quizDataJSON.results[questionNr].type;
-    currentQuestion = quizDataJSON.results[questionNr].question;
-    correctAnswer = quizDataJSON.results[questionNr].correct_answer;
-    currentAnswers = Array.from(quizDataJSON.results[questionNr].incorrect_answers);
+    if(playerNr===0){
+        questionType = quizDataJSON.results[questionNr].type;
+        currentQuestion = quizDataJSON.results[questionNr].question;
+        correctAnswer = quizDataJSON.results[questionNr].correct_answer;
+        currentAnswers = Array.from(quizDataJSON.results[questionNr].incorrect_answers);
+    }
 
     questionDisplay.innerHTML = currentQuestion;
 
@@ -122,14 +142,16 @@ setUpAnswers = function(){
             resolve();
         }
         else{
-            if(questionNr===0){
+            if(playerNr===0){
                 randomizeAnswerArray().then(()=> {
                     resolve();
                 }, (ErrorMessage)=> {
                     reject(ErrorMessage);
                 });
             }
-            resolve();
+            else{
+                resolve();
+            }
         }
 
     })
@@ -167,7 +189,7 @@ randomizeAnswerArray = function() {
             else{
                 reject("Error randomizing answers");
             }
-        },200)
+        },500)
     });
 
 };
@@ -183,6 +205,7 @@ buildAnswerGrid = function () {
             answerDiv.className = "answer";
             answerDiv.id = "answer" + answerId;
             answerDiv.innerHTML = answer;
+            answerDiv.value = currentAnswers.indexOf(answer);
             answerId++;
 
             answerGrid.appendChild(answerDiv);
@@ -193,7 +216,7 @@ buildAnswerGrid = function () {
                 resolve();
             }
             else{
-                reject(new Error("Error building answerGrid"));
+                reject("Error building answerGrid");
             }
         }, 200);
 
@@ -216,6 +239,7 @@ function answerButtonAction(number){
     answerButtons.forEach((button)=>{
         if(button.getAttribute("id") === "answer" + number){
             button.className = "answer selected";
+            players.answers[playerNr][questionNr] = currentAnswers[button.value];
         }
         else{
             button.className = "answer";
@@ -223,6 +247,11 @@ function answerButtonAction(number){
     });
 }
 
+function lockAnswer(){
+
+    playerNr++;
+    setTurn();
+}
 
 function endQuiz(){
 
