@@ -6,6 +6,7 @@ let currentAnswers;
 let correctAnswer;
 let numberOfPlayers;
 let questionType;
+let players;
 
 let questionDisplay = document.getElementById("question");
 let answerGrid = document.getElementById("answerGrid");
@@ -13,7 +14,7 @@ let finalAnswerButton = document.getElementById("finalAnswer");
 let progressGrid = document.getElementById("progressGrid");
 let questionNr = 0;
 let playerNr = 0;
-let players = [];
+
 
 finalAnswerButton.addEventListener("click", () => {
     lockAnswer();
@@ -24,9 +25,19 @@ function runQuiz(){
     numberOfPlayers = localStorage.getItem("numberOfPlayers");
     quizDataJSON = JSON.parse(localStorage.getItem("quizData"));
 
+    let playersString = "{\"answers\":[";
     for(let i = 0; i<numberOfPlayers; i++){
-        players.push("0");
+        if(i===numberOfPlayers-1){
+            playersString = playersString + "[\" \",\" \",\" \",\" \",\" \",\" \",\" \",\" \",\" \",\" \"]"
+        }
+        else{
+            playersString = playersString + "[\" \",\" \",\" \",\" \",\" \",\" \",\" \",\" \",\" \",\" \"],"
+        }
     }
+
+    playersString = playersString + "]}";
+
+    players = JSON.parse(playersString);
 
     for(let i=0; i<4; i++){
         let progressLine = document.getElementById("progressLine" + i);
@@ -41,12 +52,12 @@ function runQuiz(){
 
 function setTurn(){
 
-    if(playerNr===players.length){
+    if(playerNr===numberOfPlayers){
         questionNr++;
         playerNr=0;
     }
-    let playerIndicators = Array.from(progressGrid.getElementsByClassName("player"));
 
+    let playerIndicators = Array.from(progressGrid.getElementsByClassName("player"));
     playerIndicators.forEach(function(indicator){
         if(indicator.value==="active"){
             indicator.className = "player"
