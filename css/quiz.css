@@ -1,11 +1,14 @@
-body,
+body{
+    background-color: slategray;
+}
+
 .loaderFlex,
 .progressBar{
     display: flex;
 }
 
-.loaderGrid,
 .bodyGrid,
+.loaderGrid,
 .progressGrid,
 .progressLine,
 .answerGrid,
@@ -15,7 +18,7 @@ body,
     justify-content: center;
 }
 
-body{
+.bodyGrid{
     flex-direction: column;
     min-height: 97vh;
     align-items: stretch;
@@ -53,6 +56,10 @@ body{
 
 .bodyGrid{
     flex-shrink: 0;
+}
+
+.low{
+    margin-top: auto;
 }
 
 .progressGrid{
@@ -120,7 +127,6 @@ body{
 }
 
 .answerGrid{
-    margin-top: auto;
     background-color: darkblue;
     border-radius: 1em;
     grid-template-columns: 100%;

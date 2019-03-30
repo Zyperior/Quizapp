@@ -111,11 +111,14 @@ setUpAnswers = function(){
             resolve();
         }
         else{
-            randomizeAnswerArray().then(()=> {
-                resolve();
-            }, (ErrorMessage)=> {
-                reject(ErrorMessage);
-            });
+            if(questionNr===0){
+                randomizeAnswerArray().then(()=> {
+                    resolve();
+                }, (ErrorMessage)=> {
+                    reject(ErrorMessage);
+                });
+            }
+            resolve();
         }
 
     })

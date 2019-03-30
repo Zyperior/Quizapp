@@ -1,8 +1,10 @@
 window.onload = function () {
 
-    let loader = document.getElementById("loaderGrid");
-    let bodyGrid = document.getElementById("bodyGrid");
-    bodyGrid.className = "invisible";
+    let question = document.getElementById("question");
+    let progressGrid = document.getElementById("progressGrid");
+    let low = document.getElementById("low");
+    progressGrid.className = "invisible";
+    low.className = "invisible";
 
     let whileLoading = setInterval(loading, 500);
     let boxID = 1;
@@ -13,8 +15,9 @@ window.onload = function () {
 
         if(isLoaded==="true"){
             clearInterval(whileLoading);
-            bodyGrid.className = "bodyGrid";
-            loader.className = "invisible";
+            progressGrid.className = "progressGrid";
+            low.className = "low";
+            question.innerHTML = "";
             console.log("Quiz loaded");
             runQuiz();
         }
