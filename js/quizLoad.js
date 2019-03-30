@@ -19,7 +19,7 @@ window.onload = function () {
             low.className = "low";
             question.innerHTML = "";
             console.log("Quiz loaded");
-            runQuiz();
+            initializeQuiz();
         }
         else{
             setTimeout(()=>{

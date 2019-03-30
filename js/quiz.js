@@ -20,7 +20,7 @@ finalAnswerButton.addEventListener("click", () => {
     lockAnswer();
 });
 
-function runQuiz(){
+function initializeQuiz(){
 
     numberOfPlayers = localStorage.getItem("numberOfPlayers");
     quizDataJSON = JSON.parse(localStorage.getItem("quizData"));
