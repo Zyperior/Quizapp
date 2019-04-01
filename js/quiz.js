@@ -6,7 +6,7 @@ let currentAnswers;
 let correctAnswer;
 let numberOfPlayers;
 let questionType;
-let players;
+let playerDataJSON;
 
 let questionDisplay = document.getElementById("question");
 let answerGrid = document.getElementById("answerGrid");
@@ -40,19 +40,22 @@ function initializeQuiz(){
 
 function createAnswerJSON(){
 
-    let playersString = "{\"answers\":[";
+    let playersString = "{\"player\":[";
     for(let i = 0; i<numberOfPlayers; i++){
         if(i===numberOfPlayers-1){
-            playersString = playersString + "[\" \",\" \",\" \",\" \",\" \",\" \",\" \",\" \",\" \",\" \"]"
+            playersString = playersString +
+                "{\"answers\":[\" \",\" \",\" \",\" \",\" \",\" \",\" \",\" \",\" \",\" \"], \"correct_answers\":\"0\"}";
         }
         else{
-            playersString = playersString + "[\" \",\" \",\" \",\" \",\" \",\" \",\" \",\" \",\" \",\" \"],"
+            playersString = playersString +
+                "{\"answers\":[\" \",\" \",\" \",\" \",\" \",\" \",\" \",\" \",\" \",\" \"],\"correct_answers\":\"0\"},"
         }
     }
 
+
     playersString = playersString + "]}";
 
-    players = JSON.parse(playersString);
+    playerDataJSON = JSON.parse(playersString);
 }
 
 
@@ -94,9 +97,14 @@ function controlAnswers(questionNr){
     for(let i = 0; i < numberOfPlayers; i++){
 
         let progSegment = document.getElementById("progSegment"+i+questionNr);
+        let progressNumber = document.getElementById("progressNumber"+i);
+        let correctAnswers = playerDataJSON.player[i].correct_answers;
 
-        if(players.answers[i][questionNr].toLowerCase()===correctAnswer.toLowerCase()){
+        if(playerDataJSON.player[i].answers[questionNr].toLowerCase()===correctAnswer.toLowerCase()){
             progSegment.className = "progSegment correct";
+            correctAnswers++;
+            playerDataJSON.player[i].correct_answers = correctAnswers;
+            progressNumber.innerHTML = correctAnswers + "/10";
         }
         else{
             progSegment.className = "progSegment wrong";
@@ -105,6 +113,18 @@ function controlAnswers(questionNr){
     }
 
 }
+
+setCorrectAnswers = function(i){
+    return new Promise( (resolve, reject) =>{
+
+
+
+        setTimeout(function(){
+            resolve(correctAnswers);
+        },100);
+
+    })
+};
 
 
 async function setUpQuestion(){
@@ -239,7 +259,7 @@ function answerButtonAction(number){
     answerButtons.forEach((button)=>{
         if(button.getAttribute("id") === "answer" + number){
             button.className = "answer selected";
-            players.answers[playerNr][questionNr] = currentAnswers[button.value];
+            playerDataJSON.player[playerNr].answers[questionNr] = currentAnswers[button.value];
         }
         else{
             button.className = "answer";
