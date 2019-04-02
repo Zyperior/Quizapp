@@ -1,29 +1,13 @@
 body{
     background-color: slategray;
-}
-
-.loaderFlex,
-.progressBar{
-    display: flex;
-}
-
-.bodyGrid,
-.loaderGrid,
-.progressGrid,
-.progressLine,
-.answerGrid,
-.question,
-.answer{
-    display: grid;
-    justify-content: center;
+    font-family: Calibri,sans-serif;
 }
 
 .bodyGrid{
-    flex-direction: column;
+    display: grid;
     min-height: 97vh;
-    align-items: stretch;
+    justify-content: center;
     background-color: slategray;
-    font-family: Calibri,sans-serif;
     color: white;
 }
 
@@ -33,6 +17,7 @@ body{
 }
 
 .loaderGrid{
+    display: grid;
     grid-template-columns: 100%;
     grid-template-rows: 50% 50%;
 
@@ -44,6 +29,7 @@ body{
 }
 
 .loaderFlex{
+    display: flex;
     width: 97em;
     justify-content: center;
 }
@@ -55,29 +41,28 @@ body{
     background-color: white;
 }
 
-.bodyGrid{
-    flex-shrink: 0;
-}
-
 .low{
     margin-top: auto;
 }
 
 .progressGrid{
+    display: grid;
+    justify-content: center;
     min-width: 97vw;
-    border-radius: 1em;
     background-color: #1a1a1a;
 
 }
 
 .progressLine{
+    display: grid;
     grid-template-columns: auto auto auto;
     justify-content: space-evenly;
     align-items: center;
 }
 
 .player{
-    margin-right: 1em;
+    margin-right: 0.5em;
+    margin-left: 1.5em;
     text-align: center;
     border-radius: 0.5em;
     max-width: 1.25em;
@@ -92,6 +77,7 @@ body{
 }
 
 .progressBar{
+    display: flex;
     width: 100%;
     justify-content: center;
 }
@@ -117,10 +103,10 @@ body{
 }
 
 .question{
+    display: grid;
     justify-content: center;
     align-items: center;
     min-height: 20vh;
-    border-radius: 0.5em;
     padding: 0.5em;
     text-shadow: 0.1em 0.1em 0 #1a1a1a;
     font-size: 1.3em;
@@ -128,19 +114,21 @@ body{
 }
 
 .answerGrid{
+    display: grid;
+    justify-content: center;
     background-color: darkblue;
-    border-radius: 1em;
     grid-template-columns: 100%;
     min-height: 25vh;
     grid-gap: 0.3em;
     padding: 0.5em;
-    flex-shrink: 0;
+
 }
 
 .answer{
+    display: grid;
+    justify-content: center;
     background-color: #1a1a1a;
     box-shadow:inset 2px 2px 2px 0 white;
-    border-radius: 1em;
     padding: 0.5em;
     cursor: pointer;
     align-items: center;
@@ -162,5 +150,59 @@ body{
 
 .answer.final:hover{
     background-color: rebeccapurple;
+
+}
+
+@media only screen and (min-device-width: 600px) and (orientation: landscape) {
+    .bodyGrid{
+        min-height: 96vh;
+    }
+
+    .progressGrid{
+        grid-template-columns: auto auto;
+    }
+
+    .question{
+        min-height: 10vh;
+    }
+
+    .answerGrid{
+        grid-template-columns: 50% 50%;
+    }
+
+    .answer.final{
+        min-height: 10vh;
+    }
+}
+
+@media only screen and (min-device-width: 1025px) {
+
+    .bodyGrid{
+        grid-template-columns: auto 60vw;
+    }
+
+    .bodyGrid .top {
+        grid-column-start: 2;
+    }
+
+    .bodyGrid .low {
+        grid-column-start: 2;
+    }
+
+    .progressGrid{
+        min-width: 100%;
+    }
+
+    .question{
+        font-size: xx-large;
+    }
+
+    .answerGrid{
+
+    }
+
+    .answer{
+        font-size: x-large;
+    }
 
 }
