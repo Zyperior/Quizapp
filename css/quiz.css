@@ -1,49 +1,23 @@
+/* Standard style settings */
+/* Phone & Ipad - Portrait */
+
 body{
     background-color: slategray;
     font-family: Calibri,sans-serif;
+    color: white;
 }
 
 .bodyGrid{
     display: grid;
+    grid-template-columns: 100%;
+    justify-content: center;
     background: #1a1a1a url("../res/questionMark.svg") no-repeat top;
     background-size: 80vw 60vh;
     min-height: 97vh;
-    min-width: 100%;
-    justify-content: center;
-    color: white;
 }
 
 .invisible{
     display: none;
-}
-
-.loaderGrid{
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 50% 50%;
-
-}
-
-.loaderText{
-    font-size: x-large;
-    text-align: center;
-}
-
-.loaderFlex{
-    display: flex;
-    width: 97em;
-    justify-content: center;
-}
-
-.loadBox{
-    height: 1em;
-    width: 1em;
-    margin: 1em;
-    background-color: white;
-}
-
-.low{
-    margin-top: auto;
 }
 
 .progressGrid{
@@ -55,17 +29,13 @@ body{
 .progressLine{
     display: grid;
     grid-template-columns: auto auto auto;
-    justify-content: space-evenly;
+    margin: 0 1em 0 1em;
     align-items: center;
 }
 
 .player{
     margin-right: 0.5em;
-    margin-left: 1.5em;
-    text-align: center;
     border-radius: 0.5em;
-    max-width: 1.25em;
-    color: white;
     background-color: darkred;
 }
 
@@ -77,8 +47,6 @@ body{
 
 .progressBar{
     display: flex;
-    width: 100%;
-    justify-content: center;
 }
 
 .progSegment{
@@ -98,12 +66,10 @@ body{
 
 .progressNumber{
     margin: 0.5em 0 0.5em 0.5em;
-    text-align: start;
 }
 
 .question{
     display: grid;
-    grid-template-columns: repeat(2, 50%);
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -112,9 +78,28 @@ body{
     font-size: 4.5vh;
 }
 
-.question .questionText{
-    grid-column-start: 1;
-    grid-column-end: span 2;
+.loaderGrid{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 50% 50%;
+
+}
+
+.loaderFlex{
+    display: flex;
+    width: 97em;
+    justify-content: center;
+}
+
+.loadBox{
+    height: 1em;
+    width: 1em;
+    margin: 1em;
+    background-color: white;
+}
+
+.low{
+    margin-top: auto;
 }
 
 .answerGrid{
@@ -122,99 +107,84 @@ body{
     justify-content: center;
     background-color: white;
     grid-template-columns: 100%;
-    min-width: 91vw;
-    min-height: 25vh;
+    min-height: 15vh;
     grid-gap: 0.3em;
     padding: 0.5em;
-
 }
 
 .answer{
     display: grid;
     justify-content: center;
     background-color: #1a1a1a;
-
     padding: 0.5em;
     cursor: pointer;
+    font-size: 2.6vh;
     align-items: center;
+    text-align: center;
 }
 
 .answer.selected{
     background-color: dodgerblue;
 }
 
-.answer.final{
+.lockAnswer{
     background: mediumpurple url("../res/locktheanswer.svg") no-repeat center;
     background-size: contain;
     border: 0.5em solid mediumpurple;
-    min-height: 7vh;
-    padding: 0;
-    box-shadow: none;
+    min-height: 10vh;
 }
 
-.answer.final:hover{
+.lockAnswer:hover{
     background-color: rebeccapurple;
     border-color: rebeccapurple;
 
 }
 
-/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
-/* Landscape */
-@media only screen and (min-device-width: 376px) {
-    .bodyGrid{
+/* Phone & Ipad - Landscape */
+@media only screen and (min-device-width: 376px) and (orientation: landscape) {
+    .bodyGrid {
         min-height: 96vh;
-        background-size: 8em 12em;
+        background-size: 28vw 52vh;
         background-position: top right;
     }
 
-    .progressGrid{
+    .progressGrid {
         grid-template-columns: auto auto;
     }
 
-    .question{
-        min-height: 10vh;
+    .player {
+        margin-left: 1.5em;
+    }
+
+    .question {
         font-size: 3.5vw;
     }
 
-    .answerGrid{
-        min-width: 95vw;
+    .answerGrid {
         grid-template-columns: 50% 50%;
+        padding: 0.4em;
     }
 
-    .answer.final{
-        min-height: 10vh;
+    .answer {
+        font-size: 2.6vw;
     }
 }
 
+/*Ipad - Portrait */
 @media only screen and (min-device-width: 768px) {
+
     .bodyGrid{
-        background-size: 22vw 52vh;
-        background-position: top;
         min-height: 98vh;
         font-size: large;
     }
 
-    .top{
-        grid-column-start: 2;
-    }
-
-
     .progressGrid{
-        margin-top: 5vh;
+        grid-template-columns: auto auto;
+        margin-top: 2vh;
     }
 
     .question{
-        min-height: 10vh;
         font-size: 4.5vh;
-    }
-
-    .low{
-        grid-column-start: 2;
-        margin-bottom: 5vh;
-    }
-
-    .answerGrid{
-        min-width: 80%;
     }
 
     .answer{
@@ -222,6 +192,7 @@ body{
     }
 }
 
+/*Desktop*/
 @media screen and (min-width: 1025px) {
 
     .bodyGrid{
@@ -237,6 +208,7 @@ body{
     }
 
     .player{
+        text-align: center;
         border-radius: 1em;
         min-width: 2em;
     }
@@ -249,21 +221,15 @@ body{
 
     .progressGrid{
         margin-top: 5vh;
-        min-width: 100%;
     }
 
     .question{
-        min-height: 10vh;
         font-size: 4.5vh;
     }
 
     .low{
         grid-column-start: 2;
-        margin-bottom: 5vh;
-    }
-
-    .answerGrid{
-        min-width: 80%;
+        margin-bottom: 3vh;
     }
 
     .answer{
