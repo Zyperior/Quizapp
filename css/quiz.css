@@ -158,7 +158,9 @@ body{
 
 }
 
-@media only screen and (min-device-width: 300px) and (orientation: landscape) {
+/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+/* Landscape */
+@media only screen and (min-device-width: 376px) {
     .bodyGrid{
         min-height: 96vh;
         background-size: 8em 12em;
@@ -175,6 +177,7 @@ body{
     }
 
     .answerGrid{
+        min-width: 95vw;
         grid-template-columns: 50% 50%;
     }
 
@@ -183,7 +186,43 @@ body{
     }
 }
 
-@media only screen and (min-device-width: 1025px) and (min-device-height: 1000px) {
+@media only screen and (min-device-width: 768px) {
+    .bodyGrid{
+        background-size: 22vw 52vh;
+        background-position: top;
+        min-height: 98vh;
+        font-size: large;
+    }
+
+    .top{
+        grid-column-start: 2;
+    }
+
+
+    .progressGrid{
+        margin-top: 5vh;
+    }
+
+    .question{
+        min-height: 10vh;
+        font-size: 4.5vh;
+    }
+
+    .low{
+        grid-column-start: 2;
+        margin-bottom: 5vh;
+    }
+
+    .answerGrid{
+        min-width: 80%;
+    }
+
+    .answer{
+        font-size: x-large;
+    }
+}
+
+@media screen and (min-width: 1025px) {
 
     .bodyGrid{
         grid-template-columns: 30% 40% 30%;
@@ -215,6 +254,7 @@ body{
 
     .question{
         min-height: 10vh;
+        font-size: 4.5vh;
     }
 
     .low{
