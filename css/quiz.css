@@ -187,7 +187,7 @@ body{
 
     .bodyGrid{
         grid-template-columns: 30% 40% 30%;
-        background-size: 30vw 50vh;
+        background-size: 22vw 52vh;
         background-position: top;
         min-height: 98vh;
         font-size: large;
