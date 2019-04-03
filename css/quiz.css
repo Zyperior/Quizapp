@@ -6,7 +6,7 @@ body{
 .bodyGrid{
     display: grid;
     background: #1a1a1a url("../res/questionMark.svg") no-repeat top;
-    background-size: 20em 25em;
+    background-size: 80vw 60vh;
     min-height: 97vh;
     min-width: 100%;
     justify-content: center;
