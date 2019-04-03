@@ -10,15 +10,10 @@ let playerDataJSON;
 
 let questionDisplay = document.getElementById("questionText");
 let answerGrid = document.getElementById("answerGrid");
-let finalAnswerButton = document.getElementById("finalAnswer");
+let lockAnswerButton = document.getElementById("lockAnswer");
 let progressGrid = document.getElementById("progressGrid");
 let questionNr = 0;
 let playerNr = 0;
-
-
-finalAnswerButton.addEventListener("click", () => {
-    lockAnswer();
-});
 
 function initializeQuiz(){
 
@@ -34,6 +29,7 @@ function initializeQuiz(){
         }
     }
 
+    lockAnswerButton.addEventListener("click",lockAnswer);
     setTurn();
 
 }
@@ -60,8 +56,8 @@ function createAnswerJSON(){
 
 
 function setTurn(){
-
-    if(questionNr>10){
+    console.log(questionNr);
+    if(questionNr>=10){
         endQuiz();
     }
     else{
@@ -115,9 +111,8 @@ function controlAnswers(questionNr){
 }
 
 setCorrectAnswers = function(i){
+
     return new Promise( (resolve, reject) =>{
-
-
 
         setTimeout(function(){
             resolve(correctAnswers);
@@ -268,9 +263,18 @@ function answerButtonAction(number){
 }
 
 function lockAnswer(){
+    //remove the event listener to prevent double click
+    lockAnswerButton.removeEventListener("click",lockAnswer);
 
-    playerNr++;
-    setTurn();
+    //after 500 ms..
+    setTimeout(()=>{
+        //reset the event listener
+        lockAnswerButton.addEventListener("click",lockAnswer);
+
+        //switch to next players turn
+        playerNr++;
+        setTurn();
+    }, 500);
 }
 
 function endQuiz(){
