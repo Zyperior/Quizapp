@@ -1,6 +1,7 @@
 window.onload = function () {
 
-    let question = document.getElementById("question");
+    let question = document.getElementById("questionText");
+    let loaderGrid = document.getElementById("loaderGrid");
     let progressGrid = document.getElementById("progressGrid");
     let low = document.getElementById("low");
     progressGrid.className = "invisible";
@@ -17,7 +18,7 @@ window.onload = function () {
             clearInterval(whileLoading);
             progressGrid.className = "progressGrid";
             low.className = "low";
-            question.innerHTML = "";
+            loaderGrid.className = "invisible";
             console.log("Quiz loaded");
             initializeQuiz();
         }

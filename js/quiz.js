@@ -8,7 +8,7 @@ let numberOfPlayers;
 let questionType;
 let playerDataJSON;
 
-let questionDisplay = document.getElementById("question");
+let questionDisplay = document.getElementById("questionText");
 let answerGrid = document.getElementById("answerGrid");
 let finalAnswerButton = document.getElementById("finalAnswer");
 let progressGrid = document.getElementById("progressGrid");
@@ -25,7 +25,7 @@ function initializeQuiz(){
     numberOfPlayers = parseInt(localStorage.getItem("numberOfPlayers"));
     quizDataJSON = JSON.parse(localStorage.getItem("quizData"));
 
-    createAnswerJSON();
+    playerDataJSON = createAnswerJSON();
 
     for(let i=0; i<4; i++){
         let progressLine = document.getElementById("progressLine" + i);
@@ -55,7 +55,7 @@ function createAnswerJSON(){
 
     playersString = playersString + "]}";
 
-    playerDataJSON = JSON.parse(playersString);
+    return JSON.parse(playersString);
 }
 
 

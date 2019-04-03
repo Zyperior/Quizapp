@@ -5,12 +5,13 @@ body{
 
 .bodyGrid{
     display: grid;
+    background: #1a1a1a url("../res/questionMark.svg") no-repeat top;
+    background-size: 20em 25em;
     min-height: 97vh;
+    min-width: 100%;
     justify-content: center;
-    background-color: slategray;
     color: white;
 }
-
 
 .invisible{
     display: none;
@@ -48,8 +49,6 @@ body{
 .progressGrid{
     display: grid;
     justify-content: center;
-    min-width: 97vw;
-    background-color: #1a1a1a;
 
 }
 
@@ -104,20 +103,26 @@ body{
 
 .question{
     display: grid;
+    grid-template-columns: repeat(2, 50%);
     justify-content: center;
     align-items: center;
-    min-height: 20vh;
+    text-align: center;
+    min-height: 10vh;
     padding: 0.5em;
-    text-shadow: 0.1em 0.1em 0 #1a1a1a;
-    font-size: 1.3em;
-    background-color: darkblue;
+    font-size: 4.5vh;
+}
+
+.question .questionText{
+    grid-column-start: 1;
+    grid-column-end: span 2;
 }
 
 .answerGrid{
     display: grid;
     justify-content: center;
-    background-color: darkblue;
+    background-color: white;
     grid-template-columns: 100%;
+    min-width: 91vw;
     min-height: 25vh;
     grid-gap: 0.3em;
     padding: 0.5em;
@@ -128,7 +133,7 @@ body{
     display: grid;
     justify-content: center;
     background-color: #1a1a1a;
-    box-shadow:inset 2px 2px 2px 0 white;
+
     padding: 0.5em;
     cursor: pointer;
     align-items: center;
@@ -136,26 +141,28 @@ body{
 
 .answer.selected{
     background-color: dodgerblue;
-    box-shadow:inset -2px -2px 2px 0 white;
 }
 
 .answer.final{
-    background-color: mediumpurple;
-    border: 1px solid darkblue;
+    background: mediumpurple url("../res/locktheanswer.svg") no-repeat center;
+    background-size: contain;
+    border: 0.5em solid mediumpurple;
     min-height: 7vh;
     padding: 0;
-    font-size: x-large;
     box-shadow: none;
 }
 
 .answer.final:hover{
     background-color: rebeccapurple;
+    border-color: rebeccapurple;
 
 }
 
 @media only screen and (min-device-width: 300px) and (orientation: landscape) {
     .bodyGrid{
         min-height: 96vh;
+        background-size: 8em 12em;
+        background-position: top right;
     }
 
     .progressGrid{
@@ -164,6 +171,7 @@ body{
 
     .question{
         min-height: 10vh;
+        font-size: 3.5vw;
     }
 
     .answerGrid{
@@ -175,34 +183,51 @@ body{
     }
 }
 
-@media only screen and (min-device-width: 1025px) {
+@media only screen and (min-device-width: 1025px) and (min-device-height: 1000px) {
 
     .bodyGrid{
-        grid-template-columns: auto 60vw;
+        grid-template-columns: 30% 40% 30%;
+        background-size: 30em 45em;
+        background-position: top;
+        font-size: large;
     }
 
-    .bodyGrid .top {
+    .top{
         grid-column-start: 2;
     }
 
-    .bodyGrid .low {
-        grid-column-start: 2;
+    .player{
+        border-radius: 1em;
+        min-width: 2em;
+    }
+
+    .progSegment{
+        margin: 0.5em 0 0.5em 0.2em;
+        width: 2em;
+        height: 1em;
     }
 
     .progressGrid{
+        margin-top: 5vh;
         min-width: 100%;
     }
 
     .question{
-        font-size: xx-large;
+        min-height: 10vh;
+    }
+
+    .low{
+        grid-column-start: 2;
+        margin-bottom: 5vh;
     }
 
     .answerGrid{
-
+        min-width: 80%;
     }
 
     .answer{
         font-size: x-large;
     }
+
 
 }
