@@ -215,8 +215,8 @@ body{
 
     .progSegment{
         margin: 0.5em 0 0.5em 0.2em;
-        width: 2em;
-        height: 1em;
+        min-width: 1.4vw;
+        min-height: 1.4vh;
     }
 
     .progressGrid{
