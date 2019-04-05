@@ -2,4 +2,4 @@
 <br>
 Optimized for Iphone 6-8, Ipad and Desktop
 <br>
-<a href="https://zyperior.github.io">Link to hosted app</a>
+<a href="https://zyperior.github.io" target="_blank">Link to hosted app</a>
