@@ -125,7 +125,7 @@ body{
 
     .bodyGrid{
         grid-template-columns: 45% 55%;
-        grid-template-rows: 60vh auto auto;
+        grid-template-rows: 52vh;
     }
 
     .info{
@@ -135,17 +135,25 @@ body{
     .choiceGrid label{
         color: white;
         padding: 1vh 0 0 1vw;
-        font-size: 5vw;
+        font-size: 3.5vw;
+    }
+
+    .errorBox{
+        grid-column: 1 / span 2;
+        min-height: 13vh;
+    }
+
+    .errorMessage.show{
+        font-size: 2.5vw;
     }
 
     .createQuiz{
         min-height: 14vh;
-        margin-top: 5vh;
         grid-column: 1 / span 2;
     }
 
     .footerGrid{
-        grid-row-start: 3;
+        grid-row-start: 4;
     }
 }
 
@@ -156,19 +164,29 @@ body{
         font-size: 3.5vh;
     }
 
-
-
 }
 
 /* Ipad - Landscape */
 @media only screen and (min-device-width: 1000px) and (orientation: landscape) {
 
-    .createQuiz {
-        margin-top: 13vh;
+    .createQuiz{
+        margin-top: 4vh;
     }
 
     .choiceGrid select {
         font-size: 3.5vh;
+    }
+
+    .choiceGrid label{
+        font-size: 5vw;
+    }
+
+    .errorBox{
+        min-height: 18.5vh;
+    }
+
+    .errorMessage.show{
+        font-size: 5vw;
     }
 
 }
@@ -181,8 +199,24 @@ body{
         grid-template-rows: 60vh auto auto;
     }
 
+    .choiceGrid label{
+        font-size: 4vw;
+    }
+
     select:hover{
         cursor: pointer;
+    }
+
+    .errorBox{
+        min-height: 12vh;
+    }
+
+    .errorMessage.show{
+        font-size: 2vw;
+    }
+
+    .createQuiz{
+        margin-top: 0;
     }
 
     .author{

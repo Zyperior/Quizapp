@@ -51,7 +51,7 @@ getQuizData = function(){
 
         };
 
-        xhttp.open("GET", "https://opentdb.com/api.php?amount=10");
+        xhttp.open("GET", "https://opentdb.com/api.php?amount=8");
         xhttp.send();
 
     });
