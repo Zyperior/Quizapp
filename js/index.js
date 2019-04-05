@@ -22,25 +22,6 @@ openNewWindow = function () {
 };
 
 
-loadQuizElement = function(quiz, elementID){
-
-    return new Promise((resolve, reject) => {
-        let element = quiz.document.getElementById(elementID);
-
-        setTimeout(()=> {
-            if(element===null){
-                reject(new Error(element + " is null"))
-            }
-            if(element===undefined){
-                reject(new Error(element + " is undefined"));
-            }
-            console.log(elementID + " successfully retrieved");
-            resolve(element);
-
-        },1000);
-    })
-};
-
 getQuizData = function(){
 
     return new Promise((resolve) => {
@@ -64,32 +45,47 @@ getQuizData = function(){
     });
 };
 
+function controlQuizData(data){
+
+    return new Promise(((resolve, reject) => {
+        let dataJSON = JSON.parse(data);
+
+        setTimeout(function(){
+            if(dataJSON.results.length<10){
+                reject();
+            }
+            resolve();
+        },500)
+
+    }))
+
+}
+
 
 function openNewQuiz(){
 
     localStorage.clear();
 
-    openNewWindow().then(function (NewQuizTab) {
+    getQuizData().then(function (QuizData) {
 
-        loadQuizElement(NewQuizTab, "progressGrid").then(function(ProgressGrid){
+        controlQuizData(QuizData).then(function(){
 
-            getQuizData().then(function (QuizData) {
+            openNewWindow().then(function () {
                 localStorage.setItem("quizData", QuizData);
                 localStorage.setItem("numberOfPlayers", numberOfPlayers.value);
                 localStorage.setItem("QuizLoaded", "true");
 
             });
+        }, function (){
 
-        },function (ErrorMessage) {
-            console.log(ErrorMessage);
+            console.log("bajs")
+
         });
+
+
 
     }, function (ErrorMessage) {
         console.log(ErrorMessage);
     });
-
-
-
-
 
 }
