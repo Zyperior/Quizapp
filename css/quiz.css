@@ -78,26 +78,6 @@ body{
     font-size: 4.5vh;
 }
 
-.loaderGrid{
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 50% 50%;
-
-}
-
-.loaderFlex{
-    display: flex;
-    width: 97em;
-    justify-content: center;
-}
-
-.loadBox{
-    height: 1em;
-    width: 1em;
-    margin: 1em;
-    background-color: white;
-}
-
 .low{
     margin-top: auto;
 }

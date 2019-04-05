@@ -1,30 +1,41 @@
+let errorMessage = document.getElementById("errorMessage");
+let numberOfPlayers = document.getElementById("nrPlayers");
 let createButton = document.getElementById("createQuiz");
+
 createButton.addEventListener("click", openNewQuiz);
 
-let numberOfPlayers = document.getElementById("nrPlayers");
+function openNewQuiz(){
 
-openNewWindow = function () {
-    return new Promise((resolve, reject) => {
-        let openNewWindow = window.open("./quiz.html");
+    errorMessage.className = "errorMessage invisible";
 
-        setTimeout(()=>{
-            if(openNewWindow===null){
-                reject(new Error("openNewWindow is null"));
-            }
-            if(openNewWindow===undefined){
-                reject(new Error("openNewWindow is undefined"));
-            }
-            resolve(openNewWindow);
-        }, 1000);
+    localStorage.clear();
+
+    getQuizData().then(function (QuizData) {
+
+        controlQuizData(QuizData).then(function(){
+
+            localStorage.setItem("numberOfPlayers", numberOfPlayers.value);
+            localStorage.setItem("quizData", QuizData);
+            openNewWindow();
+
+        }, function (){
+
+            errorMessage.className = "errorMessage show"
+
+        });
+
+    }, function (ErrorMessage) {
+
+        console.log(ErrorMessage);
 
     });
 
-};
-
+}
 
 getQuizData = function(){
 
     return new Promise((resolve) => {
+
         let xhttp = new XMLHttpRequest();
 
         xhttp.onreadystatechange = function () {
@@ -32,6 +43,7 @@ getQuizData = function(){
             if(this.status===200){
 
                 if(this.readyState===4){
+
                     resolve(this.responseText);
                 }
 
@@ -48,44 +60,33 @@ getQuizData = function(){
 function controlQuizData(data){
 
     return new Promise(((resolve, reject) => {
+
         let dataJSON = JSON.parse(data);
 
         setTimeout(function(){
+
             if(dataJSON.results.length<10){
+
                 reject();
             }
             resolve();
+
         },500)
 
     }))
 
 }
 
+openNewWindow = function () {
 
-function openNewQuiz(){
+    setTimeout(()=>{
 
-    localStorage.clear();
+        window.open("./quiz.html");
 
-    getQuizData().then(function (QuizData) {
+    }, 1000);
 
-        controlQuizData(QuizData).then(function(){
-
-            openNewWindow().then(function () {
-                localStorage.setItem("quizData", QuizData);
-                localStorage.setItem("numberOfPlayers", numberOfPlayers.value);
-                localStorage.setItem("QuizLoaded", "true");
-
-            });
-        }, function (){
-
-            console.log("bajs")
-
-        });
+};
 
 
 
-    }, function (ErrorMessage) {
-        console.log(ErrorMessage);
-    });
 
-}

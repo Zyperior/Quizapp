@@ -15,7 +15,7 @@ let progressGrid = document.getElementById("progressGrid");
 let questionNr = 0;
 let playerNr = 0;
 
-function initializeQuiz(){
+initializeQuiz = function(){
 
     numberOfPlayers = parseInt(localStorage.getItem("numberOfPlayers"));
     quizDataJSON = JSON.parse(localStorage.getItem("quizData"));
@@ -32,7 +32,9 @@ function initializeQuiz(){
     lockAnswerButton.addEventListener("click",lockAnswer);
     setTurn();
 
-}
+};
+
+initializeQuiz();
 
 function createAnswerJSON(){
 
@@ -110,18 +112,6 @@ function controlAnswers(questionNr){
 
 }
 
-setCorrectAnswers = function(i){
-
-    return new Promise( (resolve, reject) =>{
-
-        setTimeout(function(){
-            resolve(correctAnswers);
-        },100);
-
-    })
-};
-
-
 async function setUpQuestion(){
     if(playerNr===0){
         questionType = quizDataJSON.results[questionNr].type;
@@ -148,7 +138,7 @@ async function setUpQuestion(){
 
 }
 
-setUpAnswers = function(){
+function setUpAnswers(){
 
     return new Promise((resolve, reject) => {
 
@@ -172,9 +162,9 @@ setUpAnswers = function(){
     })
 
 
-};
+}
 
-randomizeAnswerArray = function() {
+function randomizeAnswerArray() {
 
     return new Promise((resolve, reject) => {
 
@@ -207,9 +197,9 @@ randomizeAnswerArray = function() {
         },500)
     });
 
-};
+}
 
-buildAnswerGrid = function () {
+function buildAnswerGrid() {
 
     return new Promise((resolve, reject) => {
 
@@ -236,7 +226,7 @@ buildAnswerGrid = function () {
         }, 200);
 
     });
-};
+}
 
 function setAnswerButtonsListeners(){
 
