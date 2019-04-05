@@ -1,110 +1,161 @@
+/* Standard style settings */
+/* Phone & Ipad - Portrait */
 body{
-    display: grid;
-    grid-template-columns: 100%;
     background-color: slategray;
     font-family: Calibri,sans-serif;
+    color: white;
+}
+
+.bodyGrid{
+    display: grid;
+    grid-template-columns: 100%;
+    justify-content: center;
+}
+
+.headerGrid{
+    display: grid;
+    grid-template-columns: 100%;
+    background-color: #1a1a1a;
 }
 
 .logo{
-    max-width: 100%;
-}
-
-header{
-    display: grid;
-    background-color: #1a1a1a;
-    justify-content: center;
+    background: url("../res/logo.svg") no-repeat center top;
+    background-size: contain;
+    border: 1vh solid #1a1a1a;
+    min-height: 10vh;
 }
 
 .info{
-    font-size: medium;
-    color: white;
+    justify-self: center;
+    font-size: 3vh;
 }
 
-main{
-    width: 100%;
+.choiceGrid{
     display: grid;
-    grid-template-rows: auto auto auto 4em;
+    background-color: dodgerblue;
 }
 
-.choice_frame{
-    display: grid;
-    grid-template-rows: 50% 50%;
-    grid-template-columns: 100%;
-    background-color: orangered;
-    align-items: end;
-}
-
-.choice_frame label{
+.choiceGrid label{
     color: white;
-    width: 100%;
-    font-size: x-large;
+    padding: 1vh 0 0 1vw;
+    font-size: 6vh;
 }
 
-.choice_frame select{
+.choiceGrid select{
     font-size: large;
-    width: 100%;
+    border: none;
+    -webkit-appearance: none;
 }
 
 .createQuiz{
-    display: flex;
-    background-color: #1a1a1a;
-    color: white;
-    font-weight: bolder;
-    font-size: x-large;
-    justify-content: center;
-    align-items: center;
+    background: #1a1a1a url("../res/createquiz.svg") no-repeat center;
+    background-size: contain;
+    border: 1vh solid #1a1a1a;
+    margin-top: 9vh;
+    min-height: 10vh;
 }
 
 .createQuiz:hover{
     background-color: #9f9f9f;
+    border-color: #9f9f9f;
     cursor: pointer;
 }
 
-footer{
+.footerGrid{
     display: grid;
-    grid-template-columns: 1em 1em auto;
-    justify-content: flex-start;
+    grid-template-columns: repeat(2, min-content) auto;
 }
 
 .author{
-    grid-column: 1/ span 3;
-    font-size: medium;
+    grid-column: 1 / span 3;
 }
 
-.social_icon{
-    max-width: 1em;
-}
-
-.trivia_icon{
+.socialIcon{
     max-width: 2em;
 }
 
-@media screen and (min-width: 1126px){
+.triviaIcon{
+    max-width: 4.2em;
+}
 
-    body{
-        grid-template-columns: auto;
-        margin: 5vh 30vw 0 30vw;
+/* Phone & Ipad - Landscape */
+@media only screen and (min-device-width: 376px) and (orientation: landscape) {
+
+    .bodyGrid{
+        grid-template-columns: 45% 55%;
+        grid-template-rows: 60vh auto auto;
     }
 
-    header{
-        display: flex;
-        justify-content: flex-start;
+    .info{
+        font-size: 2.7vw;
     }
 
-    footer{
-        grid-template-columns: 2em 2em auto;
+    .choiceGrid label{
+        color: white;
+        padding: 1vh 0 0 1vw;
+        font-size: 5vw;
     }
 
-    .logo{
-        width: 20em;
-        max-height: 115px;
+    .createQuiz{
+        min-height: 14vh;
+        margin-top: 5vh;
+        grid-column: 1 / span 2;
     }
 
-    .social_icon{
-        max-width: 2em;
+    .footerGrid{
+        grid-row-start: 3;
+    }
+}
+
+@media only screen and (min-device-width: 600px) and (orientation: portrait){
+
+    .choiceGrid select {
+        font-size: 3.5vh;
     }
 
-    .trivia_icon{
-        max-width: 4em;
+
+
+}
+
+@media only screen and (min-device-width: 1000px) and (orientation: landscape) {
+
+    .createQuiz {
+        margin-top: 13vh;
     }
+
+    .choiceGrid select {
+        font-size: 3.5vh;
+    }
+
+}
+
+@media only screen and (min-device-width: 1025px){
+
+    .bodyGrid{
+        grid-template-columns: auto 40% auto;
+        grid-template-rows: 60vh auto auto;
+    }
+
+    select:hover{
+        cursor: pointer;
+    }
+
+    .author{
+        font-size: 2vh;
+    }
+
+    .socialIcon{
+        max-width: 3vw;
+    }
+
+    .triviaIcon{
+        max-width: 6.5vw;
+    }
+
+    option{
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        font-size: 3vh!important;
+    }
+
 }
