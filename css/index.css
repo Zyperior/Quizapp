@@ -107,6 +107,7 @@ body{
     }
 }
 
+/* Ipad - Portrait */
 @media only screen and (min-device-width: 600px) and (orientation: portrait){
 
     .choiceGrid select {
@@ -117,6 +118,7 @@ body{
 
 }
 
+/* Ipad - Landscape */
 @media only screen and (min-device-width: 1000px) and (orientation: landscape) {
 
     .createQuiz {
@@ -129,7 +131,8 @@ body{
 
 }
 
-@media only screen and (min-device-width: 1025px){
+/* Desktop */
+@media only screen and (min-device-width: 1200px){
 
     .bodyGrid{
         grid-template-columns: auto 40% auto;
@@ -150,12 +153,6 @@ body{
 
     .triviaIcon{
         max-width: 6.5vw;
-    }
-
-    option{
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        font-size: 3vh!important;
     }
 
 }
