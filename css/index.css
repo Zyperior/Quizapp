@@ -48,6 +48,10 @@ body{
     -webkit-appearance: none;
 }
 
+select:hover{
+    cursor: pointer;
+}
+
 .createQuiz{
     background: #1a1a1a url("../res/createquiz.svg") no-repeat center;
     background-size: contain;
@@ -195,16 +199,12 @@ body{
 @media only screen and (min-device-width: 1200px){
 
     .bodyGrid{
-        grid-template-columns: auto 40% auto;
+        grid-template-columns: 40% 40% auto;
         grid-template-rows: 60vh auto auto;
     }
 
     .choiceGrid label{
         font-size: 4vw;
-    }
-
-    select:hover{
-        cursor: pointer;
     }
 
     .errorBox{
